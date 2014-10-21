@@ -80,22 +80,23 @@ module.exports = {
     Object.keys(config.githooks).forEach(function (githook) {
       var manifest = config.apps[githook];
       var secret = config.githooks[githook];
+
       if (manifest !== undefined && manifest.type == "static") {
         hook = config.githooks[githook];
 
         app.post('/githooks/' + manifest.name, function (req, res, next) {
-          if (req.body === secret) {
-            module.npmHelpers.install(githook, function(err) {
-              if (err) {
-                console.log(err);
-                next(err);
-              } else {
-                res.send({ success: true });
-              };
-            });
-          } else {
-            res.send(404);
-          }
+          signature = req.headers["X-Hub-Signature"];
+          // TODO check secret,
+          // signature = HMAC hex digest of the payload, using the hook’s
+          // secret as the key (if configured).
+          module.npmHelpers.install(githook, function(err) {
+            if (err) {
+              console.log(err);
+              next(err);
+            } else {
+              res.send({ success: true });
+            };
+          });
         });
       } else {
         res.send(404);
