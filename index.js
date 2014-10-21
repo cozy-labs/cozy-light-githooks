@@ -89,6 +89,7 @@ module.exports = {
           // TODO check secret,
           // signature = HMAC hex digest of the payload, using the hook’s
           // secret as the key (if configured).
+          // https://developer.github.com/webhooks/
           module.npmHelpers.install(githook, function(err) {
             if (err) {
               console.log(err);
