@@ -1,0 +1,21 @@
+{
+  "name": "cozy-light-githooks",
+  "type": "plugin",
+  "version": "0.1.0",
+  "displayName": "Githook",
+  "description": "Plugin to update your apps after a github commit.",
+  "author": "Cozy Cloud <contact@cozycloud.cc> (http://cozycloud.cc)",
+  "licenses": [
+    {
+      "type": "AGPL v3",
+      "url": "http://www.gnu.org/licenses/agpl-3.0.html"
+    }
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cozy-labs/cozy-light-githooks.git"
+  },
+  "dependencies": {
+  }
+}
